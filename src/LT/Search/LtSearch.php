@@ -7,10 +7,10 @@
  * @date 2019-01-27
  */
 
-namespace Suny\LT\Search;
+namespace SzwSuny\LT\Search;
 
-use Suny\LT\Search\SplitWords;
-use Suny\LT\Search\Cache;
+use SzwSuny\LT\Search\SplitWords;
+use SzwSuny\LT\Search\Cache;
 
 class LtSearch 
 {
@@ -28,7 +28,7 @@ class LtSearch
         $words = SplitWords::getWords($content);
 
         //创建索引
-        $ltSearchAddIndex = new \Suny\LT\Search\Index\Add();
+        $ltSearchAddIndex = new \SzwSuny\LT\Search\Index\Add();
         $ltSearchAddIndex->add($id,$words);
 
         //保存文档词汇
@@ -47,8 +47,10 @@ class LtSearch
      */
     public function update(int $id,string $content):bool
     {
+        $words = SplitWords::getWords($content);
 
-        return true;
+        $update = new \SzwSuny\LT\Search\Index\Update();
+        return $update->update($id,$words);
     }
 
 
@@ -61,9 +63,8 @@ class LtSearch
      */
     public function remove(int $id):bool
     {
-
-
-        return true;
+        $remove = new \SzwSuny\LT\Search\Index\Remove();
+        return $remove->remove($id);
     }
 
 
@@ -77,8 +78,11 @@ class LtSearch
      */
     public function search(string $content):array
     {
+        $words = SplitWords::getWords($content);
 
+        $search = new \SzwSuny\LT\Search\Index\Search();
+        $result = $search->search($words);
 
-        return [];
+        return $result;
     }
 }

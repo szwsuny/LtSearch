@@ -7,10 +7,10 @@
  * @date 2019-01-28
  */
 
-namespace Suny\LT\Search\Index;
+namespace SzwSuny\LT\Search\Index;
 
-use Suny\LT\Search\Config;
-use Suny\LT\Search\Cache;
+use SzwSuny\LT\Search\Config;
+use SzwSuny\LT\Search\Cache;
 
 class Add 
 {

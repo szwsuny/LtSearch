@@ -7,7 +7,7 @@
 * @date 2019-01-28
  */
 
-namespace Suny\LT\Search;
+namespace SzwSuny\LT\Search;
 
 class SplitWords
 {

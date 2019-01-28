@@ -7,9 +7,9 @@
  * @date 2019-01-28
  */
 
-namespace Suny\LT\Search;
+namespace SzwSuny\LT\Search;
 
-use Suny\LT\Search\Config;
+use SzwSuny\LT\Search\Config;
 
 class Cache
 {
@@ -70,8 +70,15 @@ class Cache
      */
     public static function writeWords(int $id,array $array):bool
     {
+        $fileName = Config::WORDS_FILE_PREFIX . $id;
+        $filePath = Config::WORDS_DIR . $fileName;
 
-        return true;
+        self::createDir(Config::WORDS_DIR);
+
+        $write = implode(' ',$array);
+        $result = file_put_contents($filePath,$write);
+
+        return $result !== false;
     }
 
 
@@ -84,39 +91,31 @@ class Cache
      */
     public static function readWords(int $id):array
     {
+        $fileName = Config::WORDS_FILE_PREFIX . $id;
+        $filePath = Config::WORDS_DIR . $fileName;
 
-        return [];
+        if(!file_exists($filePath))
+        {
+            return [];
+        }
+
+        $result = file_get_contents($filePath);
+
+        return explode(' ',$result);
     }
 
-
-    /**
-     * @brief 对搜索结果进行存储
-     *
-     * @param $words 拆分后的关键词
-     * @param $array 结果集
-     *
-     * @return bool
-     */
-    public static function writeResult(array $words,array $array):bool
+    public static function deleteWords(int $id):bool
     {
+        $fileName = Config::WORDS_FILE_PREFIX . $id;
+        $filePath = Config::WORDS_DIR . $fileName;
+
+        if(file_exists($filePath))
+        {
+            @unlink($filePath);
+        }
 
         return true;
     }
-
-
-    /**
-     * @brief 读取结果集
-     *
-     * @param $words 拆分后的关键词
-     *
-     * @return 
-     */
-    public static function readResult(array $words):array
-    {
-
-        return [];
-    }
-
 
     /**
      * @brief 创建文件夹

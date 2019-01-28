@@ -7,16 +7,16 @@
 * @date 2019-01-28
  */
 
-namespace Suny\LT\Search\Index;
+namespace SzwSuny\LT\Search\Index;
 
-use Suny\LT\Search\Config;
-use Suny\LT\Search\Cache;
+use SzwSuny\LT\Search\Index\Remove;
+use SzwSuny\LT\Search\Index\Add;
 
 class Update
 {
 
     /**
-        * @brief 修改一条索引
+        * @brief 修改一条索引 其实就是先删除 在添加。。。
         *
         * @param $id 文档id
         * @param $words 拆分后的关键词
@@ -25,6 +25,12 @@ class Update
      */
     public function update(int $id,array $words):bool
     {
+
+        $remove = new Remove();
+        $remove->remove($id);
+
+        $add = new Add();
+        $add->add($id,$words);
 
         return true;
     }

@@ -7,7 +7,7 @@
  * @date 2019-01-27
  */
 
-namespace Suny\Lt\Search;
+namespace SzwSuny\Lt\Search;
 
 final class Config 
 {
@@ -20,12 +20,7 @@ final class Config
     /**
      * @brief 索引分词存储目录
      */
-    const WORDS_DIR = '/tmp/ltSearh/words/';
-
-    /**
-        * @brief 结果集目录
-     */
-    const RESULT_DIR = '/tmp/ltSearch/result/';
+    const WORDS_DIR = '/tmp/ltSearch/words/';
 
     /**
      * @brief 索引采用的模式 （只有2种 32位模式 64位模式 ，请根据服务器不同采用）
@@ -40,10 +35,6 @@ final class Config
     /**
         * @brief 文档文件前缀
      */
-    const DOC_FILE_PREFIX = 'doc_';
+    const WORDS_FILE_PREFIX = 'doc_';
 
-    /**
-        * @brief 结果集文件前缀
-     */
-    const RESULT_FILE_PREFIX = 'result_';
 }

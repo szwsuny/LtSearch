@@ -9,7 +9,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Suny\LT\Search\LtSearch;
+use SzwSuny\LT\Search\LtSearch;
 
 $ltSearch = new LtSearch();
 
@@ -22,3 +22,5 @@ $ltSearch->add(6,'不要放到项目中，索引文件会很多');
 $ltSearch->add(7,'你也可以根据需要修改成redis存储');
 $ltSearch->add(7,'修改Cache.php代码实现可以调整为其他存储方式');
 $ltSearch->add(9,'那样能够提高检索效率');
+
+echo 'ok';
