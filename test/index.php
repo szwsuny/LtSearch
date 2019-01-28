@@ -9,7 +9,7 @@
 
 require __DIR__ . "/../vendor/autoload.php";
 
-use Suny\ltSearch;
+use Suny\LT\Search\LtSearch;
 
-$ltSearch = new ltSearch();
+$ltSearch = new LtSearch();
 var_dump($ltSearch);

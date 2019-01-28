@@ -1,15 +1,18 @@
 <?php
 /**
-* @file ltSearchUpdateIndex.php
+* @file Update.php
 * @brief 修改索引
 * @author sunzhiwei
 * @version 1.0
 * @date 2019-01-28
  */
 
-namespace Suny\index;
+namespace Suny\LT\Search\Index;
 
-class ltSearchUpdateIndex
+use Suny\LT\Search\Config;
+use Suny\LT\Search\Cache;
+
+class Update
 {
 
     /**

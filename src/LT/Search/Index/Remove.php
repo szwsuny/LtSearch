@@ -1,15 +1,18 @@
 <?php
 /**
-* @file ltSearchRemoveIndex.php
+* @file Remove.php
 * @brief 索引移除
 * @author sunzhiwei
 * @version 1.0
 * @date 2019-01-28
  */
 
-namespace Suny\index;
+namespace Suny\LT\Search\Index;
 
-class ltSearchRemoveIndex
+use Suny\LT\Search\Config;
+use Suny\LT\Search\Cache;
+
+class Remove 
 {
 
 

@@ -1,15 +1,15 @@
 <?php
 /**
-* @file ltSearchSplit.php
+* @file SplitWords.php
 * @brief 拆分关键词
 * @author sunzhiwei
 * @version 1.0
 * @date 2019-01-28
  */
 
-namespace Suny;
+namespace Suny\LT\Search;
 
-class ltSearchSplit
+class SplitWords
 {
     
     /**

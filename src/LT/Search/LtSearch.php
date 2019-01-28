@@ -1,17 +1,18 @@
 <?php
 /**
- * @file ltSearch.php
+ * @file LtSearch.php
  * @brief ltSearch主程序
  * @author sunzhiwei
  * @version 1.0
  * @date 2019-01-27
  */
 
-namespace Suny;
+namespace Suny\LT\Search;
 
-use Suny\index\ltSearchAddIndex;
+use Suny\LT\Search\SplitWords;
+use Suny\LT\Search\Cache;
 
-class ltSearch 
+class LtSearch 
 {
     /**
      * @brief 新增搜索索引 id请最好从1开始，可以是你的文章或者其他的id。
@@ -22,16 +23,16 @@ class ltSearch
      *
      * @return bool
      */
-    public function addIndex(int $id,string $content):bool
+    public function add(int $id,string $content):bool
     {
-        $words = ltSearchSplit::getWords($content);
+        $words = SplitWords::getWords($content);
 
         //创建索引
-        $ltSearchAddIndex = new ltSearchAddIndex();
+        $ltSearchAddIndex = new \Suny\LT\Search\Index\Add();
         $ltSearchAddIndex->add($id,$words);
 
         //保存文档词汇
-        ltSearchConfig::writeWords($id,$words); 
+        Cache::writeWords($id,$words); 
 
         return true;
     }
@@ -44,7 +45,7 @@ class ltSearch
      *
      * @return bool
      */
-    public function updateIndex(int $id,string $content):bool
+    public function update(int $id,string $content):bool
     {
 
         return true;
@@ -58,7 +59,7 @@ class ltSearch
      *
      * @return bool
      */
-    public function removeIndex(int $id):bool
+    public function remove(int $id):bool
     {
 
 

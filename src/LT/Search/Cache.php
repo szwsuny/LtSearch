@@ -1,44 +1,64 @@
 <?php
 /**
- * @file LtSearchCache.php
+ * @file Cache.php
  * @brief 索引缓存操作，目前采用io模式，请根据需要自己改成redis或其他方式
  * @author sunzhiwei
  * @version 1.0
  * @date 2019-01-28
  */
 
-namespace Suny;
+namespace Suny\LT\Search;
 
-class ltSearchConfig
+use Suny\LT\Search\Config;
+
+class Cache
 {
 
     /**
      * @brief 写入索引， $key 或做md5方式，数组使用空行分隔
      *
-     * @param $key 关键词
+     * @param $word 关键词
      * @param $array 索引数组
      *
      * @return bool 
      */
-    public static function writeIndex(string $key,array $array):bool
-    {
-        return true;
+    public static function writeIndex(string $word,array $array):bool
+    { 
+        $key = md5($word);
+        $fileName = Config::INDEX_FILE_PREFIX . $key;
+        $filePath = Config::INDEX_DIR . $fileName;
+
+        self::createDir(Config::INDEX_DIR);
+
+        $write = implode(' ',$array);
+        $result = file_put_contents($filePath,$write);
+
+        return $result !== false;
     }
 
 
     /**
      * @brief 读取某一关键词索引
      *
-     * @param $key 关键词
+     * @param $word 关键词
      *
      * @return array
      */
-    public static function readIndex(string $key):array
+    public static function readIndex(string $word):array
     {
+        $key = md5($word);
+        $fileName = Config::INDEX_FILE_PREFIX . $key;
+        $filePath = Config::INDEX_DIR . $fileName;
 
-        return [];
+        if(!file_exists($filePath))
+        {
+            return [];
+        }
+
+        $result = file_get_contents($filePath);
+
+        return explode(' ',$result);
     }
-
 
     /**
      * @brief 将建立索引的关键词写入，将来用于更新，删除索引
