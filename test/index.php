@@ -12,4 +12,4 @@ require __DIR__ . "/../vendor/autoload.php";
 use Suny\ltSearch;
 
 $ltSearch = new ltSearch();
-$ltSearch->addIndex(1,"新增一条索引");
+var_dump($ltSearch);

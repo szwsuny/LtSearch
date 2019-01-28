@@ -9,10 +9,13 @@
 
 namespace Suny;
 
+use Suny\index\ltSearchAddIndex;
+
 class ltSearch 
 {
     /**
-     * @brief 新增搜索索引
+     * @brief 新增搜索索引 id请最好从1开始，可以是你的文章或者其他的id。
+     * 请注意id不能重复，否则或造成索引结果不准确。
      *
      * @param $id 给与索引的id,这个id将在搜索结果数组中返回
      * @param $content 要索引的字符串
@@ -21,7 +24,14 @@ class ltSearch
      */
     public function addIndex(int $id,string $content):bool
     {
-        echo $id;
+        $words = ltSearchSplit::getWords($content);
+
+        //创建索引
+        $ltSearchAddIndex = new ltSearchAddIndex();
+        $ltSearchAddIndex->add($id,$words);
+
+        //保存文档词汇
+        ltSearchConfig::writeWords($id,$words); 
 
         return true;
     }
