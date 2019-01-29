@@ -1,8 +1,8 @@
 {
-    "name":             "SzwSuny/LtSearch",
+    "name":             "szwsuny/ltsearch",
     "description":      "Lightweight Search Engine",
     "keywords":         ["ltSearch", "search engine"],
-    "time":             "2018-1-28",
+    "time":             "2019-1-28",
     "license":          "MIT",
     "version":          "1.0.0-beta1",
     "role":             "Engineer",

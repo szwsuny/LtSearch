@@ -76,3 +76,21 @@ Config.php 主要配置文件
 搜索
 
     $result = $ltSearch->search('搜索内容');    //搜索结果将会返回符合条件的文档ID数组
+
+------
+### 使用案例
+
+    有好多人直接将结果在数据库中 in 。好几千或者上万数据。我想说活不是这么干的。
+    请大家了解一下 array_slice 函数，php内置的。此函数使用方式跟 mysql limit 差不多，使用此函数先取出第几页的多少条，然后将结果到数据库中in 这样效率很快。
+    比如结果集变量为 $result ，每页20条，取第一页。
+    $ids = array_slice($result,0,20);
+
+    第二页为
+    $ids = array_slice($result,20,20);
+
+    第三页为
+    $ids = array_slice($result,60,20);
+
+    然后将 $ids 到数据库中in。这样只取20条速度超级快。
+
+    放在最后，查询完的结果集可以放到redis中，查询的文字过一下md5加密当做redis的key，每次查询时候先去取一下redis如果没有在调用搜索功能。记得给key设置过期时间。
