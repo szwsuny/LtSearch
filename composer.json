@@ -1,7 +1,7 @@
 {
     "name":             "szwsuny/ltsearch",
     "description":      "Lightweight Search Engine",
-    "keywords":         ["ltSearch", "search engine"],
+    "keywords":         ["ltsearch", "search", "php"],
     "time":             "2019-1-28",
     "license":          "MIT",
     "version":          "1.0.0-beta1",
