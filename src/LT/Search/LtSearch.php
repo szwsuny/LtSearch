@@ -74,14 +74,38 @@ class LtSearch
      *
      * @param $content 要搜索的内容
      *
+     * @param $words 分词后数组。可直接使用此数组
+     *
      * @return array
      */
-    public function search(string $content):array
+    public function search(string $content,array &$words = []):array
     {
         $words = SplitWords::getWords($content);
 
         $search = new \SzwSuny\LT\Search\Index\Search();
         $result = $search->search($words);
+
+        return $result;
+    }
+
+
+    /**
+        * @brief 带分页的搜索结果
+        *
+        * @param $content 搜索的内容
+        * @param $pageIndex 第几页
+        * @param $pageSize 每页数量
+        * @param $words 分词后的数组
+        *
+        * @return array
+     */
+    public function searchPage(string $content,int $pageIndex,int $pageSize,array &$words = []):array
+    {
+        $pageIndex = $pageIndex < 1 ? 1 : $pageIndex;
+        $start = ($pageIndex - 1) * $pageSize;
+
+        $searchResult = $this->search($content,$words);
+        $result = array_slice($searchResult,$start,$pageSize);
 
         return $result;
     }
