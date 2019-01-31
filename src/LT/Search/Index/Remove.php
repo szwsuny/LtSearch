@@ -10,7 +10,7 @@
 namespace SzwSuny\LT\Search\Index;
 
 use SzwSuny\LT\Search\Config;
-use SzwSuny\LT\Search\Cache;
+use SzwSuny\LT\Search\Cache\Cache;
 
 class Remove 
 {
@@ -31,7 +31,6 @@ class Remove
         {
             $indexs = $this->removeIndex($id,$word);
             Cache::writeIndex($word,$indexs);
-            Cache::deleteWords($id);
         }
 
         return true;

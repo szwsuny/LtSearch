@@ -10,7 +10,7 @@
 namespace SzwSuny\LT\Search;
 
 use SzwSuny\LT\Search\SplitWords;
-use SzwSuny\LT\Search\Cache;
+use SzwSuny\LT\Search\Cache\Cache;
 
 class LtSearch 
 {
@@ -82,8 +82,18 @@ class LtSearch
     {
         $words = SplitWords::getWords($content);
 
+        $key = md5(implode('_',$words));
+        $result = cache::readResult($key);
+
+        if(!empty($result))
+        {
+            return $result;
+        }
+        
         $search = new \SzwSuny\LT\Search\Index\Search();
         $result = $search->search($words);
+
+        cache::writeResult($key,$result);
 
         return $result;
     }

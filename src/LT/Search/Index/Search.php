@@ -10,7 +10,7 @@
 namespace SzwSuny\LT\Search\Index;
 
 use SzwSuny\LT\Search\Config;
-use SzwSuny\LT\Search\Cache;
+use SzwSuny\LT\Search\Cache\Cache;
 
 class Search
 {
